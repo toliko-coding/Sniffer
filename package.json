@@ -6,19 +6,8 @@
   "scripts": {
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/toliko-coding/Sniffer.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/toliko-coding/Sniffer/issues"
-  },
-  "homepage": "https://github.com/toliko-coding/Sniffer#readme",
-  "dependencies": {
-    "express": "^4.18.1"
-  },
   "devDependencies": {
     "@types/node": "^18.0.5"
   }
