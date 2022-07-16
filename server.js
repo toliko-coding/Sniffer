@@ -11,15 +11,3 @@ socket.on("message", (msg, rinfo) => {
 });
 
 socket.bind(12321, "localhost");
-
-// Buffer.from("test", 0, 100);
-socket.send(
-  "abcdfgdfrgtdfgfdgdfgfdgfdgfdgd",
-  12321,
-  "localhost",
-  (err, bytes) => {
-    // console.log(bytes);
-  }
-);
-socket.send(Buffer.from("abcdfgdfrgtdfgfdgdfgfdgfdgfdgd"), 12321, "localhost");
-socket.send(Buffer.from("abcD"), 12321, "localhost");
