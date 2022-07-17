@@ -10,6 +10,8 @@ server.on("message", (msg, rinfo) => {
   console.log("Recieved UDP message");
 });
 
-server.bind(12321, "localhost", () => {
+console.log("hello from server");
+
+server.bind(12321, "server", () => {
   server.setSendBufferSize(100);
 });
