@@ -1,0 +1,10 @@
+FROM python:3.10.5-slim
+
+WORKDIR '/sniffer'
+RUN apt-get update && apt-get install -y \
+    tcpdump 
+RUN pip install --pre scapy[basic]
+
+COPY . .
+
+CMD [ "python","run.py" ]

@@ -14,3 +14,12 @@ services:
       dockerfile: Dockerfile.dev
     volumes:
       - ./client:/client
+  sniffer:
+    build:
+      context: ./sniffer
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./sniffer:/sniffer
+    depends_on:
+      - client
+      - server

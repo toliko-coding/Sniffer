@@ -12,6 +12,6 @@ server.on("message", (msg, rinfo) => {
 
 console.log("hello from server");
 
-server.bind(12321, "server", () => {
+server.bind(12321, "localhost", () => {
   server.setSendBufferSize(100);
 });
