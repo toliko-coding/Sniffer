@@ -1,6 +1,6 @@
-FROM node:16-alpine
+FROM python:3.10.5-alpine
 
 WORKDIR '/client'
 COPY . .
 
-CMD [ "node","client.js" ]
+CMD [ "python","-u","client.py" ]

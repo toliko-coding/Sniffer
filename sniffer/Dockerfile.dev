@@ -3,8 +3,8 @@ FROM python:3.10.5-slim
 WORKDIR '/sniffer'
 RUN apt-get update && apt-get install -y \
     tcpdump 
-RUN pip install --pre scapy[basic]
+RUN pip install --no-cache-dir --pre scapy[basic]
 
 COPY . .
 
-CMD [ "python","run.py" ]
+CMD [ "python","-u","run.py" ]

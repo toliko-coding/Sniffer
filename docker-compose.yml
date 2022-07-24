@@ -1,25 +1,23 @@
 version: '3.9'
 services:
   server:
+    network_mode: "host"
     build:
       context: ./server
       dockerfile: Dockerfile.dev
     volumes:
       - ./server:/server
-    ports:
-      - "12321:12321"
   client:
+    network_mode: "host"
     build:
       context: ./client
       dockerfile: Dockerfile.dev
     volumes:
       - ./client:/client
   sniffer:
+    network_mode: "host"
     build:
       context: ./sniffer
       dockerfile: Dockerfile.dev
     volumes:
       - ./sniffer:/sniffer
-    depends_on:
-      - client
-      - server
