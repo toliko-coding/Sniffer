@@ -1,36 +1,37 @@
+from functools import reduce
 import socket
-import threading
+import pickle
+from time import sleep
 
 msgFromClient = "Hello UDP Server"
-bytesToSend = str.encode(msgFromClient)
-serverAddressPort = ("127.0.0.1", 12321)
+msgFromClientBytes = list(map(lambda x: x.encode(), msgFromClient.split()))
+serverAddressPort = ("localhost", 12321)
 bufferSize = 1024
-print("hello from client")
+d = 3
 
 
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
+# XOR function
+def byte_xor(a1, b1):
+    return bytes(a ^ b for a, b in zip(a1, b1))
 
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
 
+# Calculating e
+e = reduce(lambda a, b: byte_xor(a, b), msgFromClientBytes)
 
 # Create a UDP socket at client side
 
 UDPClientSocket = socket.socket(family=socket.AF_INET, type=socket.SOCK_DGRAM)
+print("UDP client sending data")
 
 # Send to server using created UDP socket
 
-
-def sendMsg():
-    UDPClientSocket.sendto(bytesToSend, serverAddressPort)
+for i in msgFromClientBytes:
+    data = pickle.dumps((i, e, d))
+    UDPClientSocket.sendto(data, serverAddressPort)
     msgFromServer = UDPClientSocket.recvfrom(bufferSize)
     msg = "Message from Server {}".format(msgFromServer[0])
 
     print(msg)
+    sleep(3)
 
-
-set_interval(sendMsg, 3)
+UDPClientSocket.close()

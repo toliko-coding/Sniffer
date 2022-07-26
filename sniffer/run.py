@@ -1,6 +1,6 @@
 from scapy.all import *
 
-conf.L3socket = L3RawSocket
+# conf.L3socket = L3RawSocket
 
 
 def packet_callback(packet):
@@ -9,7 +9,7 @@ def packet_callback(packet):
 
 def main():
     print("hello from sniffer")
-    sniff(prn=packet_callback, count=2, filter="port 12321", iface="lo")
+    sniff(prn=packet_callback, count=2, filter="port 12321")
 
 
 if __name__ == "__main__":

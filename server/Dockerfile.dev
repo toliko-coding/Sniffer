@@ -1,6 +1,0 @@
-FROM python:3.10.5-alpine
-
-WORKDIR '/server'
-COPY . .
-
-CMD [ "python","-u","server.py" ]

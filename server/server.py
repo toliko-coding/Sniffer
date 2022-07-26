@@ -1,11 +1,12 @@
 import socket
+import pickle
 
-
-localIP = "127.0.0.1"
+localIP = "localhost"
 localPort = 12321
 bufferSize = 1024
 msgFromServer = "Hello UDP Client"
 bytesToSend = str.encode(msgFromServer)
+d = 3
 
 
 # Create a datagram socket
@@ -18,9 +19,10 @@ while True:
     bytesAddressPair = UDPServerSocket.recvfrom(bufferSize)
     message = bytesAddressPair[0]
     address = bytesAddressPair[1]
-    clientMsg = "Message from Client:{}".format(message)
-    # clientIP = "Client IP Address:{}".format(address)
-    print(clientMsg)
-    # print(clientIP)
+    unPackedMsg = pickle.loads(message)
+    clientMsg = "Message from Client:{}".format(unPackedMsg)
+    clientIP = "Client IP Address:{}".format(address)
+    print(unPackedMsg)
+    print(clientIP)
     # Sending a reply to client
     UDPServerSocket.sendto(bytesToSend, address)
